@@ -1,0 +1,15 @@
+services:
+  macro-monitor:
+    build: .
+    container_name: macro-monitor
+    ports:
+      - "8501:8501"
+    environment:
+      - FRED_API_KEY=${FRED_API_KEY}
+    restart: unless-stopped
+    # Optional: persist Streamlit cache between restarts
+    volumes:
+      - streamlit-cache:/app/.streamlit/cache
+
+volumes:
+  streamlit-cache:
